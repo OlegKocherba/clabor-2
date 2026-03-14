@@ -158,101 +158,120 @@ function submit() {
         </div>
       </section>
 
+      <!-- Pool summary -->
+      <section class="mx-4 mt-2 p-5 rounded-2xl bg-primary/5 border border-primary/20">
+        <div class="flex justify-between items-center">
+          <div>
+            <p class="text-sm text-slate-500 font-medium">Round Pool</p>
+            <p class="text-3xl font-black text-primary tabular-nums">{{ pool }}</p>
+          </div>
+          <div
+            v-if="gameStore.carryOver > 0"
+            class="text-right"
+          >
+            <p class="text-xs text-slate-400">Carry-over</p>
+            <p class="font-bold text-primary">+{{ gameStore.carryOver }}</p>
+          </div>
+        </div>
+      </section>
+
       <!-- Declarations -->
       <section class="p-4">
-        <h3 class="text-xs section-label mb-4">Declarations</h3>
         <div class="space-y-3">
-          <!-- Tierce -->
-          <div class="card flex items-center justify-between p-4">
-            <div>
-              <p class="font-semibold">Tierce</p>
-              <p class="text-xs text-slate-500">20 pts</p>
-            </div>
-            <div class="flex items-center gap-4">
-              <button
-                class="counter-btn-minus"
-                :disabled="declarations.tierces <= 0"
-                @click="declarations.tierces--"
-              >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  viewBox="0 0 24 24"
+          <!-- Tierce + Poltina on one row -->
+          <div class="grid grid-cols-2 gap-3">
+            <!-- Tierce -->
+            <div class="card flex flex-col gap-3 p-4">
+              <div>
+                <p class="font-semibold">Tierce</p>
+                <p class="text-xs text-slate-500">20 pts</p>
+              </div>
+              <div class="flex items-center gap-3">
+                <button
+                  class="counter-btn-minus"
+                  :disabled="declarations.tierces <= 0"
+                  @click="declarations.tierces--"
                 >
-                  <path
-                    stroke-linecap="round"
-                    d="M5 12h14"
-                  />
-                </svg>
-              </button>
-              <span class="text-lg font-bold w-6 text-center tabular-nums">{{ declarations.tierces }}</span>
-              <button
-                class="counter-btn-plus"
-                :disabled="declarations.tierces >= 4"
-                @click="declarations.tierces++"
-              >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  viewBox="0 0 24 24"
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      d="M5 12h14"
+                    />
+                  </svg>
+                </button>
+                <span class="text-lg font-bold w-6 text-center tabular-nums">{{ declarations.tierces }}</span>
+                <button
+                  class="counter-btn-plus"
+                  :disabled="declarations.tierces >= 4"
+                  @click="declarations.tierces++"
                 >
-                  <path
-                    stroke-linecap="round"
-                    d="M12 4v16m8-8H4"
-                  />
-                </svg>
-              </button>
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      d="M12 4v16m8-8H4"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
-          </div>
 
-          <!-- Poltina -->
-          <div class="card flex items-center justify-between p-4">
-            <div>
-              <p class="font-semibold">Poltina</p>
-              <p class="text-xs text-slate-500">50 pts</p>
-            </div>
-            <div class="flex items-center gap-4">
-              <button
-                class="counter-btn-minus"
-                :disabled="declarations.poltinas <= 0"
-                @click="declarations.poltinas--"
-              >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  viewBox="0 0 24 24"
+            <!-- Poltina -->
+            <div class="card flex flex-col gap-3 p-4">
+              <div>
+                <p class="font-semibold">Poltina</p>
+                <p class="text-xs text-slate-500">50 pts</p>
+              </div>
+              <div class="flex items-center gap-3">
+                <button
+                  class="counter-btn-minus"
+                  :disabled="declarations.poltinas <= 0"
+                  @click="declarations.poltinas--"
                 >
-                  <path
-                    stroke-linecap="round"
-                    d="M5 12h14"
-                  />
-                </svg>
-              </button>
-              <span class="text-lg font-bold w-6 text-center tabular-nums">{{ declarations.poltinas }}</span>
-              <button
-                class="counter-btn-plus"
-                :disabled="declarations.poltinas >= 2"
-                @click="declarations.poltinas++"
-              >
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  viewBox="0 0 24 24"
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      d="M5 12h14"
+                    />
+                  </svg>
+                </button>
+                <span class="text-lg font-bold w-6 text-center tabular-nums">{{ declarations.poltinas }}</span>
+                <button
+                  class="counter-btn-plus"
+                  :disabled="declarations.poltinas >= 2"
+                  @click="declarations.poltinas++"
                 >
-                  <path
-                    stroke-linecap="round"
-                    d="M12 4v16m8-8H4"
-                  />
-                </svg>
-              </button>
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      d="M12 4v16m8-8H4"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
 
@@ -272,23 +291,6 @@ function submit() {
                 class="w-11 h-6 bg-slate-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"
               />
             </label>
-          </div>
-        </div>
-      </section>
-
-      <!-- Pool summary -->
-      <section class="mx-4 mt-2 p-5 rounded-2xl bg-primary/5 border border-primary/20">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-sm text-slate-500 font-medium">Round Pool</p>
-            <p class="text-3xl font-black text-primary tabular-nums">{{ pool }}</p>
-          </div>
-          <div
-            v-if="gameStore.carryOver > 0"
-            class="text-right"
-          >
-            <p class="text-xs text-slate-400">Carry-over</p>
-            <p class="font-bold text-primary">+{{ gameStore.carryOver }}</p>
           </div>
         </div>
       </section>
