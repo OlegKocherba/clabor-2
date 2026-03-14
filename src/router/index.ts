@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import { useAuthStore } from '@/stores/authStore';
 
 declare module 'vue-router' {
@@ -9,22 +9,48 @@ declare module 'vue-router' {
 }
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
+    // ── Game routes ──────────────────────────────────────────────────────────
     {
       path: '/',
+      name: 'landing',
+      component: () => import('../views/game/LandingPage.vue'),
+      meta: { layout: 'EmptyLayout', requiresAuth: false },
+    },
+    {
+      path: '/setup',
+      name: 'setup',
+      component: () => import('../views/game/SetupPage.vue'),
+      meta: { layout: 'EmptyLayout', requiresAuth: false },
+    },
+    {
+      path: '/round',
+      name: 'round-entry',
+      component: () => import('../views/game/RoundEntryPage.vue'),
+      meta: { layout: 'EmptyLayout', requiresAuth: false },
+    },
+    {
+      path: '/scoreboard',
+      name: 'scoreboard',
+      component: () => import('../views/game/ScoreboardPage.vue'),
+      meta: { layout: 'EmptyLayout', requiresAuth: false },
+    },
+    // ── Dev / legacy routes ──────────────────────────────────────────────────
+    {
+      path: '/dev',
       name: 'main',
       component: () => import('../views/MainPage.vue'),
       meta: { layout: 'AppLayout', requiresAuth: true },
     },
     {
-      path: '/login',
+      path: '/dev/login',
       name: 'login',
       component: () => import('../views/LoginPage.vue'),
       meta: { layout: 'AuthLayout', requiresAuth: false },
     },
     {
-      path: '/test',
+      path: '/dev/test',
       name: 'test',
       component: () => import('../views/TestPage.vue'),
       meta: { layout: 'EmptyLayout', requiresAuth: true },

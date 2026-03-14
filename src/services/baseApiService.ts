@@ -43,11 +43,7 @@ const createDefaultOptions = (baseUrl: string, options: ApiOptions = {}): ApiOpt
   ...options,
 });
 
-const buildErrorInfo = async (
-  error: unknown,
-  endpoint: string,
-  method: string,
-): Promise<ApiErrorInfo> => {
+const buildErrorInfo = async (error: unknown, endpoint: string, method: string): Promise<ApiErrorInfo> => {
   if (error instanceof HTTPError) {
     let responseData: Record<string, unknown> = {};
     try {
@@ -104,12 +100,7 @@ export const createApiClient = (config: ApiConfig = {}) => {
   const { baseUrl = DEFAULT_BASE_URL, defaultOptions = {}, withLoading } = config;
   const baseOptions = createDefaultOptions(baseUrl, defaultOptions);
 
-  const rawRequest = async <T>({
-    method,
-    endpoint,
-    data,
-    options = {},
-  }: RequestParams): Promise<T> => {
+  const rawRequest = async <T>({ method, endpoint, data, options = {} }: RequestParams): Promise<T> => {
     const kyMethod = method.toLowerCase() as 'get' | 'post' | 'put' | 'patch' | 'delete';
     const requestOptions: ApiOptions = {
       ...baseOptions,

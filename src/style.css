@@ -1,1 +1,127 @@
 @import 'tailwindcss';
+
+/* ─── Design Tokens ──────────────────────────────────────────── */
+@theme {
+  --font-sans: 'Lexend', ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand */
+  --color-primary: #007fff;
+
+  /* Surfaces */
+  --color-bg-light: #f5f7f8;
+  --color-surface: #ffffff;
+
+  /* App container */
+  --app-max-width: 760px;
+}
+
+/* ─── Base ───────────────────────────────────────────────────── */
+@layer base {
+  body {
+    @apply bg-bg-light text-slate-900 antialiased overflow-x-hidden;
+    font-family: var(--font-sans);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* App shell: centered column, max 760px */
+  #app {
+    max-width: var(--app-max-width);
+    margin-inline: auto;
+    min-height: 100dvh;
+    position: relative;
+  }
+
+  /* Subtle frame shadow on wide screens */
+  @media (min-width: 761px) {
+    #app {
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 8px 32px rgba(0, 0, 0, 0.08);
+    }
+  }
+}
+
+/* ─── Components ─────────────────────────────────────────────── */
+@layer components {
+
+  /* Buttons */
+  .btn-primary {
+    @apply bg-primary text-white font-bold rounded-xl
+      shadow-lg active:scale-[0.98] transition-all
+      disabled:opacity-40 disabled:cursor-not-allowed disabled:active:scale-100;
+  }
+  .btn-secondary {
+    @apply bg-surface border-2 border-primary/20 text-primary font-bold rounded-xl
+      active:scale-[0.98] transition-all;
+  }
+
+  /* Icon button (header actions, back buttons) */
+  .icon-btn {
+    @apply p-2 rounded-full hover:bg-slate-100 active:bg-slate-200 transition-colors;
+  }
+
+  /* Card surface */
+  .card {
+    @apply bg-surface rounded-xl shadow-sm border border-slate-100;
+  }
+
+  /* Section heading label (use with text-xs or text-sm) */
+  .section-label {
+    @apply font-semibold uppercase tracking-wider text-slate-500;
+  }
+
+  /* Tiny ALL-CAPS label */
+  .label-xs {
+    @apply text-[10px] font-bold text-slate-400 uppercase;
+  }
+
+  /* Badges */
+  .badge {
+    @apply text-xs px-2 py-0.5 rounded-full font-bold;
+  }
+  .badge-primary {
+    @apply text-xs px-2 py-0.5 rounded-full font-bold bg-primary/10 text-primary;
+  }
+  .badge-danger {
+    @apply text-xs px-2 py-0.5 rounded-full font-bold bg-red-100 text-red-600;
+  }
+  .badge-warning {
+    @apply text-xs px-2 py-0.5 rounded-full font-bold bg-amber-100 text-amber-600;
+  }
+
+  /* Counter buttons (+/- in declarations) */
+  .counter-btn-minus {
+    @apply size-8 flex items-center justify-center rounded-full
+      disabled:opacity-30 active:scale-95 transition-transform
+      bg-slate-100 text-slate-600;
+  }
+  .counter-btn-plus {
+    @apply size-8 flex items-center justify-center rounded-full
+      disabled:opacity-30 active:scale-95 transition-transform
+      bg-primary/10 text-primary;
+  }
+
+  /* Text input field */
+  .input-field {
+    @apply w-full h-12 px-4 rounded-xl bg-slate-100 border-none
+      focus:outline-none focus:ring-2 focus:ring-primary/50
+      text-slate-900 placeholder:text-slate-400 transition-all;
+  }
+}
+
+/* ─── Utilities ──────────────────────────────────────────────── */
+
+/* Fixed elements aligned to the app container's right edge */
+@layer utilities {
+  .right-app {
+    right: max(1.5rem, calc((100vw - var(--app-max-width)) / 2 + 1.5rem));
+  }
+}
+
+/* Hide number input spinners */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}

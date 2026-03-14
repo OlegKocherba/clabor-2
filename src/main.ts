@@ -2,7 +2,14 @@ import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import PrimeVue from 'primevue/config';
 import ToastService from 'primevue/toastservice';
+import ConfirmationService from 'primevue/confirmationservice';
 import Toast from 'primevue/toast';
+import ConfirmDialog from 'primevue/confirmdialog';
+import Dialog from 'primevue/dialog';
+import Button from 'primevue/button';
+import InputText from 'primevue/inputtext';
+import SelectButton from 'primevue/selectbutton';
+import ToggleSwitch from 'primevue/toggleswitch';
 import { definePreset } from '@primeuix/themes';
 import Aura from '@primeuix/themes/aura';
 
@@ -62,8 +69,17 @@ app.use(PrimeVue, {
   },
 });
 app.use(ToastService);
+app.use(ConfirmationService);
 
 app.component('ToastComponent', Toast);
+app.component('ConfirmDialog', ConfirmDialog);
+// eslint-disable-next-line vue/multi-word-component-names, vue/no-reserved-component-names
+app.component('Dialog', Dialog);
+// eslint-disable-next-line vue/multi-word-component-names, vue/no-reserved-component-names
+app.component('Button', Button);
+app.component('InputText', InputText);
+app.component('SelectButton', SelectButton);
+app.component('ToggleSwitch', ToggleSwitch);
 
 // Enable mocking and then mount the app
 enableMocking()

@@ -4,7 +4,7 @@ import { useMessages } from '@/composables/useMessages';
 import { ErrorType } from '@/types/errors';
 import type { ErrorBoundaryState, AppError } from '@/types/errors';
 
-const { fallbackComponent, showToast = true } = defineProps<{
+const { fallbackComponent = undefined, showToast = true } = defineProps<{
   fallbackComponent?: unknown;
   showToast?: boolean;
 }>();
@@ -126,9 +126,7 @@ provide('errorBoundary', {
           v-if="errorState.error?.stack"
           class="mt-4"
         >
-          <summary class="text-sm text-red-600 cursor-pointer hover:text-red-800">
-            Show technical details
-          </summary>
+          <summary class="text-sm text-red-600 cursor-pointer hover:text-red-800">Show technical details</summary>
           <pre class="mt-2 text-xs text-red-700 bg-red-100 p-2 rounded overflow-x-auto">{{
             errorState.error.stack
           }}</pre>

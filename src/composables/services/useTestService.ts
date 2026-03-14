@@ -24,8 +24,7 @@ export const useTestService = () => {
 
   const createPostReq = (data: CreateTestData) => api.post<TestResponse>('posts', data);
 
-  const updatePostReq = (id: number, data: Partial<CreateTestData>) =>
-    api.put<TestResponse>(`posts/${id}`, data);
+  const updatePostReq = (id: number, data: Partial<CreateTestData>) => api.put<TestResponse>(`posts/${id}`, data);
 
   const deletePostReq = (id: number) => api.delete<void>(`posts/${id}`);
 
