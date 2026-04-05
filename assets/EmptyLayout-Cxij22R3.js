@@ -1,1 +1,0 @@
-import{_ as t,o,c as s,J as c}from"./index-C6oGenbf.js";const n={},r={class:"empty-layout min-h-screen bg-white"};function a(e,_){return o(),s("div",r,[c(e.$slots,"default")])}const d=t(n,[["render",a]]);export{d as default};
