@@ -4,17 +4,17 @@ import { defineStore } from 'pinia';
 export const useAuthStore = defineStore('auth', () => {
   const isLoggedIn = ref(false);
 
-  function login() {
+  const login = () => {
     isLoggedIn.value = true;
-  }
+  };
 
-  function logout() {
+  const logout = () => {
     isLoggedIn.value = false;
-  }
+  };
 
-  function toggleAuth() {
+  const toggleAuth = () => {
     isLoggedIn.value = !isLoggedIn.value;
-  }
+  };
 
   return { isLoggedIn, login, logout, toggleAuth };
 });

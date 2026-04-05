@@ -15,11 +15,11 @@ const form = reactive({
 
 const isValid = computed(() => form.name0.trim().length > 0 && form.name1.trim().length > 0);
 
-function startGame() {
+const startGame = () => {
   if (!isValid.value) return;
   gameStore.setupGame([form.name0.trim(), form.name1.trim()], form.format);
   goToScoreboard();
-}
+};
 </script>
 
 <template>

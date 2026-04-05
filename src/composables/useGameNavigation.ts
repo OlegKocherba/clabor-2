@@ -1,7 +1,7 @@
 import { useRouter } from 'vue-router';
 import { useGameStore } from '@/stores/gameStore';
 
-export function useGameNavigation() {
+export const useGameNavigation = () => {
   const router = useRouter();
   const gameStore = useGameStore();
 
@@ -10,7 +10,7 @@ export function useGameNavigation() {
   const goToRoundEntry = () => router.push({ name: 'round-entry' });
   const goToScoreboard = () => router.push({ name: 'scoreboard' });
 
-  function requireActiveGame(): boolean {
+  const requireActiveGame = (): boolean => {
     if (!gameStore.isActive) {
       goToLanding();
       return false;

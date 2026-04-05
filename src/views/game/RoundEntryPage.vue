@@ -28,17 +28,17 @@ const showSumError = computed(
   () => rawPoints.value[0] !== null && rawPoints.value[1] !== null && totalRaw.value !== pool.value,
 );
 
-function handlePointInput(teamIndex: TeamIndex, event: Event) {
+const handlePointInput = (teamIndex: TeamIndex, event: Event) => {
   const val = (event.target as HTMLInputElement).valueAsNumber;
   setPointsForTeam(teamIndex, isNaN(val) ? null : val);
-}
+};
 
-function submit() {
+const submit = () => {
   if (!isValid.value) return;
   gameStore.addRound(toFormState());
   reset();
   goToScoreboard();
-}
+};
 </script>
 
 <template>

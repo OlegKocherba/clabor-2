@@ -36,7 +36,7 @@ const MyPreset = definePreset(Aura, {
 });
 
 // Enable MSW in development mode
-async function enableMocking() {
+const enableMocking = async () => {
   if (import.meta.env.MODE !== 'development') {
     return;
   }
@@ -54,7 +54,7 @@ async function enableMocking() {
     });
     console.log('MSW started successfully');
   }
-}
+};
 
 const app = createApp(App);
 

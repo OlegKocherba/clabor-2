@@ -2,7 +2,7 @@ import { ref, computed, watch } from 'vue';
 import type { TeamIndex, RoundFormState, RoundDeclarations } from '@/types/game';
 import { computePool } from '@/stores/gameStore';
 
-export function useRoundForm() {
+export const useRoundForm = () => {
   const playedBy = ref<TeamIndex>(0);
 
   const declarations = ref<RoundDeclarations>({
@@ -17,7 +17,7 @@ export function useRoundForm() {
   const pool = computed(() => computePool(declarations.value));
 
   // Entering points for one team auto-fills the other
-  function setPointsForTeam(teamIndex: TeamIndex, value: number | null) {
+  const setPointsForTeam = (teamIndex: TeamIndex, value: number | null) => {
     const otherIndex: TeamIndex = teamIndex === 0 ? 1 : 0;
     rawPoints.value[teamIndex] = value;
     if (value !== null && !isNaN(value) && value >= 0) {
@@ -54,14 +54,14 @@ export function useRoundForm() {
     return true;
   });
 
-  function reset() {
+  const reset = () => {
     playedBy.value = 0;
     declarations.value = { tierces: 0, poltinas: 0, hasBela: false };
     rawPoints.value = [null, null];
     noTricks.value = [false, false];
   }
 
-  function toFormState(): RoundFormState {
+  const toFormState = (): RoundFormState => {
     return {
       playedBy: playedBy.value,
       declarations: { ...declarations.value },

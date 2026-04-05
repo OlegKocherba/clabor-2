@@ -19,11 +19,11 @@ const isLeading = computed<[boolean, boolean]>(() => {
   return [a > b, b > a];
 });
 
-function doReset() {
+const doReset = () => {
   gameStore.resetGame();
   confirmReset.value = false;
   goToLanding();
-}
+};
 </script>
 
 <template>

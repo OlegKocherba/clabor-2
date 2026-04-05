@@ -29,9 +29,9 @@ const DEFAULT_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 let errorHandler: ApiErrorHandler | null = null;
 
-export function registerErrorHandler(handler: ApiErrorHandler) {
+export const registerErrorHandler = (handler: ApiErrorHandler) => {
   errorHandler = handler;
-}
+};
 
 const createDefaultOptions = (baseUrl: string, options: ApiOptions = {}): ApiOptions => ({
   prefixUrl: baseUrl,

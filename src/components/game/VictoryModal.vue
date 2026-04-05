@@ -10,10 +10,10 @@ const visible = computed(() => gameStore.winner !== null);
 const winnerName = computed(() => (gameStore.winner !== null ? gameStore.teamNames[gameStore.winner] : ''));
 const winnerScore = computed(() => (gameStore.winner !== null ? gameStore.totalsWithPenalties[gameStore.winner] : 0));
 
-function startNewGame() {
+const startNewGame = () => {
   gameStore.resetGame();
   goToSetup();
-}
+};
 </script>
 
 <template>

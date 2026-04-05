@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
 const props = defineProps<{
   name: string;
   score: number;
@@ -6,7 +8,7 @@ const props = defineProps<{
   isLeading?: boolean;
 }>();
 
-const baitPct = Math.min((props.baitCount / 10) * 100, 100);
+const baitPct = computed(() => Math.min((props.baitCount / 10) * 100, 100));
 </script>
 
 <template>
